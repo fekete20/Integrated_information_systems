@@ -58,8 +58,9 @@ public class Server {
 						String filename = message = (String) in.readObject();
 						System.out.println("client>" + message);
 						sendMessage(download(filename));
-					} else {
-						System.out.println("Invalid operation.");
+					} else { // rossz mûvelet választása esetén hibaüzenet elküldése a kliensnek
+						sendMessage("Invalid operation. You gived " + message
+								+ " but you have to select between download (d) and upload (u)");
 					}
 
 					sendMessage("Do you want to continue? (y/n)");

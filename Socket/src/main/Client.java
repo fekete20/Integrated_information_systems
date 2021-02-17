@@ -37,16 +37,16 @@ public class Client {
 					// írás vagy olvasás?
 					System.out.println((String) in.readObject());
 					Scanner scanner = new Scanner(System.in);
-					String op = scanner.next();
+					String op = scanner.nextLine();
 					sendMessage(op); // billentyû elmegy a szervernek
 					if (op.equals("u")) { // a kliens oldali állományt elküldjük a szervernek
 						// fájlnév bekérése
 						System.out.println((String) in.readObject());
-						String filename = scanner.next();
+						String filename = scanner.nextLine();
 						sendMessage(filename);
 						// tartalom bekérése
 						System.out.println((String) in.readObject());
-						String content = scanner.next();
+						String content = scanner.nextLine();
 						writeToLocalFile(filename, content);
 						sendMessage(upload(filename)); // fájl tartalmának elküldése a szervernek
 						System.out.println((String) in.readObject()); // sikeres volt-e a feltöltés
@@ -55,7 +55,7 @@ public class Client {
 
 						// fájlnév bekérése
 						System.out.println((String) in.readObject());
-						String filename = scanner.next();
+						String filename = scanner.nextLine();
 						sendMessage(filename);
 
 						// kontent kiírása
@@ -63,11 +63,12 @@ public class Client {
 						System.out.println(content);
 						writeToLocalFile(filename, content);
 					} else {
-						System.err.println("Invalid operation.");
+						// rossz mûvelet választása esetén hibaüzenet kiírása
+						System.out.println((String) in.readObject());
 					}
 
 					System.out.println((String) in.readObject());
-					String c = scanner.next();
+					String c = scanner.nextLine();
 					if (c.equals("y")) {
 						sendMessage("y");
 						cont = true;
